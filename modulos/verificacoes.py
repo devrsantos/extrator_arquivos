@@ -23,9 +23,11 @@ def verifica_tem_pasta(
     """
     caminho_arquivo = Path(caminho_arquivo)
     destino = Path(destino)
+    # Remove sufixos como '.part1' para criar a pasta final
     nome_base = caminho_arquivo.stem.split(".part")[0]
     destino_final = destino / nome_base
 
+    # Se a pasta já contém arquivos, assume-se que a extração foi feita
     if destino_final.exists() and any(destino_final.iterdir()):
         logger.info(
             "Pasta '%s' já existe e não está vazia. Pulando extração.", destino_final

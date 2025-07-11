@@ -29,9 +29,11 @@ def extrair_arquivo(
     if not caminho_arquivo.exists():
         raise FileNotFoundError(f"Arquivo {caminho_arquivo} não foi encontrado")
 
+    # Seleciona o método de extração com base na extensão
     if caminho_arquivo.suffix == ".zip":
         extrair_zip(caminho_arquivo, destino_final, progresso_callback, lista_callback)
     elif caminho_arquivo.suffix == ".rar":
+        # Arquivos divididos em partes utilizam o extrator de RAR
         extrair_rar_partes(
             caminho_arquivo, destino_final, progresso_callback, lista_callback
         )
@@ -45,6 +47,7 @@ def main() -> None:
     destino_geral = pasta_base / "extraidos"
     destino_geral.mkdir(exist_ok=True)
 
+    # Procura por todos os formatos suportados dentro da pasta do script
     arquivos = (
         list(pasta_base.glob("*.zip"))
         + list(pasta_base.glob("*.rar"))
