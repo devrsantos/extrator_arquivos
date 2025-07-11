@@ -1,0 +1,5 @@
+rarfile>=4.0
+pytest>=8.0
+pytest-mock>=3.0
+black>=25.0
+ruff>=0.4
