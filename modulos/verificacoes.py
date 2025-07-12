@@ -1,11 +1,38 @@
-import os
-def verifica_tem_pasta(caminho_arquivo, destino):
-    nome_base = os.path.splitext(os.path.basename(caminho_arquivo))[0].split('.part')[0]
-    destino_final = os.path.join(destino, nome_base)
+from __future__ import annotations
 
-    if os.path.exists(destino_final) and os.listdir(destino_final):
-        print(f"Pasta '{destino_final}' já existe e não está vazia. Pulando extração.")
+import logging
+from pathlib import Path
+from typing import Optional
+
+logger = logging.getLogger(__name__)
+
+__all__ = ["verifica_tem_pasta"]
+
+
+def verifica_tem_pasta(
+    caminho_arquivo: Path | str, destino: Path | str
+) -> Optional[Path]:
+    """Garante que existe uma pasta para extração.
+
+    Args:
+        caminho_arquivo: Caminho do arquivo a ser extraído.
+        destino: Diretório base para criação da pasta.
+
+    Returns:
+        Caminho da pasta criada ou ``None`` se a pasta já existia e possuía arquivos.
+    """
+    caminho_arquivo = Path(caminho_arquivo)
+    destino = Path(destino)
+    # Remove sufixos como '.part1' para criar a pasta final
+    nome_base = caminho_arquivo.stem.split(".part")[0]
+    destino_final = destino / nome_base
+
+    # Se a pasta já contém arquivos, assume-se que a extração foi feita
+    if destino_final.exists() and any(destino_final.iterdir()):
+        logger.info(
+            "Pasta '%s' já existe e não está vazia. Pulando extração.", destino_final
+        )
         return None
-    
-    os.makedirs(destino_final, exist_ok=True)
+
+    destino_final.mkdir(parents=True, exist_ok=True)
     return destino_final
