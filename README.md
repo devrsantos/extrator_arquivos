@@ -1,18 +1,17 @@
 # Extrator de Arquivos
 
-Este projeto fornece funções para extrair arquivos `.zip` ou conjuntos de arquivos `.rar` divididos em partes.
-Também possui uma interface gráfica simples, desenvolvida com **Tkinter**, que permite escolher o arquivo a ser extraído e o diretório de destino.
+Este projeto fornece funcoes para extrair arquivos `.zip` ou conjuntos de `.rar` divididos em partes. A aplicacao inclui uma interface grafica simples em **Tkinter** para selecionar o arquivo a ser extraido e o diretorio de destino.
 
 ## Estrutura
 
-- `main.py` — ponto de entrada com a função `extrair_arquivo` e um exemplo de uso.
-- `extrator/core.py` — implementa as rotinas de extração.
+- `main.py` — ponto de entrada com a funcao `extrair_arquivo` e um exemplo de uso.
+- `extrator/core.py` — implementa as rotinas de extracao.
 - `extrator/utils.py` — verifica ou cria pastas de destino.
-- `tests/` — contém testes automatizados com `pytest`.
+- `tests/` — contem testes automatizados com `pytest`.
 
-## Como usar
+## Requisitos e ambiente
 
-1. Crie um ambiente virtual e instale as dependências:
+Recomenda-se o uso de um ambiente virtual para isolar as dependencias. Este repositorio utiliza `requirements.txt` para o versionamento dos pacotes.
 
 ```bash
 python -m venv .venv
@@ -20,37 +19,40 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Para facilitar, utilize o `Makefile`:
+## Como usar
+
+O `Makefile` contem tarefas utilitarias:
 
 ```bash
-
 make run      # executa a interface
-make test     # roda a suíte de testes
+make test     # roda a suite de testes
 make format   # aplica o Black
 make lint     # roda o Ruff
-make run   # executa a interface
-make test  # roda a suíte de testes
+make ci       # executa formatacao, lint e testes
 ```
 
-2. Execute o script principal:
+Para iniciar manualmente a aplicacao:
 
 ```bash
 python main.py
 ```
-Ao executar, uma janela do Tkinter será exibida para selecionar o arquivo e a pasta de destino.
+
+Ao executar, uma janela do Tkinter sera exibida para selecionar o arquivo e a pasta de destino.
 
 ## Testes
 
-Execute a suíte de testes com:
+Execute a suite com:
 
 ```bash
 make test
 ```
 
-## Integração Contínua
+Sempre que adicionar novos recursos, inclua testes unitarios ou de integracao para manter a qualidade do projeto.
 
-O repositório inclui um *workflow* do GitHub Actions que valida formatação, lint e testes a cada push ou pull request.
+## Integracao continua
 
-## Formatação e Linting
+Este repositorio possui um workflow do GitHub Actions que valida formacao, lint e testes a cada `push` ou `pull request`.
 
-O projeto usa as ferramentas [Black](https://black.readthedocs.io/) e [Ruff](https://docs.astral.sh/ruff/) para manter a qualidade do código.
+## Contribuindo
+
+Formate o codigo com [Black](https://black.readthedocs.io/) e verifique eventuais problemas com [Ruff](https://docs.astral.sh/ruff/). Utilize `make ci` antes de enviar as alteracoes e mantenha as boas praticas descritas neste README.
