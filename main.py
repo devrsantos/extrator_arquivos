@@ -23,6 +23,7 @@ def extrair_arquivo(
     lista_callback: Optional[Callable[[Sequence[str]], None]] = None,
 ) -> None:
     """Determina o tipo de arquivo e delega para o extrator correto."""
+    
     caminho_arquivo = Path(caminho_arquivo)
     destino = Path(destino)
 
@@ -41,6 +42,14 @@ def extrair_arquivo(
 
 
 def main() -> None:  # pragma: no cover - interface gráfica
+    """
+    Inicializa a interface gráfica para o extrator de arquivos, permitindo ao usuário selecionar um arquivo compactado
+    (.zip ou .rar) e um diretório de destino para extração. Fornece botões para seleção dos caminhos e executa a extração,
+    exibindo mensagens de sucesso ou erro conforme apropriado.
+
+    Levanta:
+        RuntimeError: Se o Tkinter não estiver disponível na instalação atual.
+    """
     if tk is None:
         raise RuntimeError("Tkinter não está disponível nesta instalação")
 
