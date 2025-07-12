@@ -10,3 +10,4 @@ format:
 lint:
 	ruff .
 
+ci: format lint test

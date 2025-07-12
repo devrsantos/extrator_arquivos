@@ -1,8 +1,7 @@
 # Extrator de Arquivos
 
 Este projeto fornece funções para extrair arquivos `.zip` ou conjuntos de arquivos `.rar` divididos em partes.
-Também possui uma interface gráfica simples, desenvolvida com **Tkinter**, que
-permite escolher o arquivo a ser extraído e o diretório de destino.
+Também possui uma interface gráfica simples, desenvolvida com **Tkinter**, que permite escolher o arquivo a ser extraído e o diretório de destino.
 
 ## Estrutura
 
@@ -24,8 +23,10 @@ pip install -r requirements.txt
 Para facilitar, utilize o `Makefile`:
 
 ```bash
-make run   # executa a interface
-make test  # roda a suíte de testes
+make run      # executa a interface
+make test     # roda a suíte de testes
+make format   # aplica o Black
+make lint     # roda o Ruff
 ```
 
 2. Execute o script principal:
@@ -33,8 +34,7 @@ make test  # roda a suíte de testes
 ```bash
 python main.py
 ```
-Ao executar, uma janela do Tkinter será exibida para selecionar o arquivo e a
-pasta de destino.
+Ao executar, uma janela do Tkinter será exibida para selecionar o arquivo e a pasta de destino.
 
 ## Testes
 
@@ -44,6 +44,10 @@ Execute a suíte de testes com:
 make test
 ```
 
+## Integração Contínua
+
+O repositório inclui um *workflow* do GitHub Actions que valida formatação, lint e testes a cada push ou pull request.
+
 ## Formatação e Linting
 
-O projeto sugere o uso das ferramentas [Black](https://black.readthedocs.io/) e [Flake8](https://flake8.pycqa.org/) ou [Ruff](https://docs.astral.sh/ruff/) para manter a formatação e a qualidade do código.
+O projeto usa as ferramentas [Black](https://black.readthedocs.io/) e [Ruff](https://docs.astral.sh/ruff/) para manter a qualidade do código.
