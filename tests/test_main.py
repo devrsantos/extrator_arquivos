@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+import pytest
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
@@ -46,3 +47,12 @@ def test_extrair_arquivo_rar(monkeypatch, tmp_path: Path) -> None:
     main.extrair_arquivo(arquivo, destino)
     assert called.get("rar")
     assert not called.get("zip")
+
+
+def test_extrair_arquivo_invalido(tmp_path: Path) -> None:
+    arquivo = tmp_path / "arquivo.txt"
+    arquivo.touch()
+    destino = tmp_path / "dest"
+    destino.mkdir()
+    with pytest.raises(ValueError):
+        main.extrair_arquivo(arquivo, destino)
