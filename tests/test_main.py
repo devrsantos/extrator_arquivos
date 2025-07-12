@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 import pytest
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -56,3 +57,10 @@ def test_extrair_arquivo_invalido(tmp_path: Path) -> None:
     destino.mkdir()
     with pytest.raises(ValueError):
         main.extrair_arquivo(arquivo, destino)
+
+
+def test_extrair_arquivo_inexistente(tmp_path: Path) -> None:
+    destino = tmp_path / "dest"
+    destino.mkdir()
+    with pytest.raises(FileNotFoundError):
+        main.extrair_arquivo(tmp_path / "nao_existe.zip", destino)
