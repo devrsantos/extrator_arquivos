@@ -23,8 +23,6 @@ def verifica_tem_pasta(
     """
     caminho_arquivo = Path(caminho_arquivo)
     destino = Path(destino)
-    nome_base = caminho_arquivo.stem.split(".part")[0]
-    destino_final = destino / nome_base
 
     if destino_final.exists() and any(destino_final.iterdir()):
         logger.info(
