@@ -14,16 +14,13 @@ def verifica_tem_pasta(
 ) -> Optional[Path]:
     """Garante que existe uma pasta para extração.
 
-    Args:
-        caminho_arquivo: Caminho do arquivo a ser extraído.
-        destino: Diretório base para criação da pasta.
-
-    Returns:
-        Caminho da pasta criada ou ``None`` se a pasta já existia e possuía arquivos.
+    Se a pasta já existir e contiver arquivos, nenhuma ação é executada e
+    ``None`` é retornado.
     """
     caminho_arquivo = Path(caminho_arquivo)
     destino = Path(destino)
 
+    destino_final = destino / caminho_arquivo.stem
     if destino_final.exists() and any(destino_final.iterdir()):
         logger.info(
             "Pasta '%s' já existe e não está vazia. Pulando extração.", destino_final

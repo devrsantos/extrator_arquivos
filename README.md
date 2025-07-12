@@ -1,6 +1,8 @@
 # Extrator de Arquivos
 
 Este projeto fornece funções para extrair arquivos `.zip` ou conjuntos de arquivos `.rar` divididos em partes.
+Também possui uma interface gráfica simples, desenvolvida com **Tkinter**, que
+permite escolher o arquivo a ser extraído e o diretório de destino.
 
 ## Estrutura
 
@@ -24,6 +26,8 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+Ao executar, uma janela do Tkinter será exibida para selecionar o arquivo e a
+pasta de destino.
 
 ## Testes
 
