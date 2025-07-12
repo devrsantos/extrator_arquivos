@@ -4,14 +4,12 @@ import logging
 from pathlib import Path
 from typing import Callable, Optional, Sequence
 
+
 from modulos.extratores import extrair_rar_partes, extrair_zip
 from modulos.verificacoes import verifica_tem_pasta
 
-try:
-    import tkinter as tk
-    from tkinter import filedialog, messagebox
-except Exception:  # pragma: no cover - Tkinter might not be available
-    tk = None  # type: ignore
+import tkinter as tk
+from tkinter import filedialog, messagebox
 
 logger = logging.getLogger(__name__)
 
