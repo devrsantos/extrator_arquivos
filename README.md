@@ -23,10 +23,13 @@ pip install -r requirements.txt
 Para facilitar, utilize o `Makefile`:
 
 ```bash
+
 make run      # executa a interface
 make test     # roda a suíte de testes
 make format   # aplica o Black
 make lint     # roda o Ruff
+make run   # executa a interface
+make test  # roda a suíte de testes
 ```
 
 2. Execute o script principal:
