@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from modulos.verificacoes import verifica_tem_pasta
+from extrator.utils import verifica_tem_pasta
 
 
 def test_cria_pasta(tmp_path: Path) -> None:
