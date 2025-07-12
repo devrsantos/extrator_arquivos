@@ -7,8 +7,8 @@ permite escolher o arquivo a ser extraído e o diretório de destino.
 ## Estrutura
 
 - `main.py` — ponto de entrada com a função `extrair_arquivo` e um exemplo de uso.
-- `modulos/extratores.py` — implementa as rotinas de extração.
-- `modulos/verificacoes.py` — verifica a existência de pastas de destino.
+- `extrator/core.py` — implementa as rotinas de extração.
+- `extrator/utils.py` — verifica ou cria pastas de destino.
 - `tests/` — contém testes automatizados com `pytest`.
 
 ## Como usar
@@ -19,6 +19,13 @@ permite escolher o arquivo a ser extraído e o diretório de destino.
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+Para facilitar, utilize o `Makefile`:
+
+```bash
+make run   # executa a interface
+make test  # roda a suíte de testes
 ```
 
 2. Execute o script principal:
@@ -34,7 +41,7 @@ pasta de destino.
 Execute a suíte de testes com:
 
 ```bash
-pytest
+make test
 ```
 
 ## Formatação e Linting

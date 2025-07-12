@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import Callable, Optional, Sequence
 
 
-from modulos.extratores import extrair_rar_partes, extrair_zip
-from modulos.verificacoes import verifica_tem_pasta
+from extrator.core import extrair_rar_partes, extrair_zip
+from extrator.utils import verifica_tem_pasta
 
 import tkinter as tk
 from tkinter import filedialog, messagebox
@@ -22,10 +22,18 @@ def extrair_arquivo(
     progresso_callback: Optional[Callable[[int, int], None]] = None,
     lista_callback: Optional[Callable[[Sequence[str]], None]] = None,
 ) -> None:
-    """Determina o tipo de arquivo e delega para o extrator correto."""
-    
+    """Determina o tipo de arquivo e delega para o extrator adequado.
+
+    Levanta:
+        FileNotFoundError: se ``caminho_arquivo`` não existir.
+        ValueError: se a extensão do arquivo não for suportada.
+    """
+
     caminho_arquivo = Path(caminho_arquivo)
     destino = Path(destino)
+
+    if not caminho_arquivo.exists():
+        raise FileNotFoundError(f"Arquivo '{caminho_arquivo}' não encontrado")
 
     destino_final = verifica_tem_pasta(caminho_arquivo, destino)
     if destino_final is None:  # pasta já existente e não vazia
